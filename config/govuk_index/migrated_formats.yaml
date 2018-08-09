@@ -39,12 +39,14 @@ migrated:
 - hmrc_manual_section
 - manual
 - manual_section
+- news_story # Whitehall
 - policy
 - recommended-link # Search admin
 - service_manual_guide
 - service_manual_homepage
 - service_manual_service_standard
 - service_manual_topic
+- speech # Whitehall
 - statutory_instrument
 - step_by_step_nav
 - task_list
@@ -369,7 +371,6 @@ non_indexable:
 - ministerial_role
 - national_statistics
 - national_statistics_announcement
-- news_story
 - notice
 - official_statistics
 - official_statistics_announcement
@@ -392,7 +393,6 @@ non_indexable:
 - research
 - services_and_information
 - social_media_use
-- speech
 - staff_update
 - statistical_data_set
 - statistics
