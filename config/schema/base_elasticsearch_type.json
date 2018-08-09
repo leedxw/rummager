@@ -11,6 +11,7 @@
     "first_published_at",
     "format",
     "government_document_supertype",
+    "image_url",
     "indexable_content",
     "navigation_document_supertype",
     "is_withdrawn",
