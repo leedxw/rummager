@@ -1,0 +1,31 @@
+indexable_publishing_apps:
+  - calendars
+  - collections-publisher
+  - contacts
+  - content-publisher
+  - hmrc-manuals-api
+  - manuals-publisher
+  - policy-publisher
+  - publisher
+  - search-admin
+  - service-manual-publisher
+  - smartanswers:
+    - transaction
+  - specialist-publisher
+  - travel-advice-publisher
+  - whitehall:
+    - finder
+
+indexable_special_cases:
+  content-tagger:
+    - /world/afghanistan
+    - /world/albania
+    - /world/algeria
+  frontend:
+    - /help
+    - /find-local-council
+
+non_indexable_publishing_apps:
+  - calculators
+  - whitehall
+  - licencefinder
