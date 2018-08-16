@@ -12,7 +12,8 @@ RSpec.describe GovukIndex::PublishingEventWorker do
       payload = {
         "base_path" => "/cheese",
         "document_type" => "help_page",
-        "title" => "We love cheese"
+        "title" => "We love cheese",
+        "publishing_app" => "publisher",
       }
 
       expect(actions).to receive(:save)
@@ -48,7 +49,8 @@ RSpec.describe GovukIndex::PublishingEventWorker do
           "withdrawn_notice" => {
             "explanation" => "<div class=\"govspeak\"><p>test 2</p>\n</div>",
             "withdrawn_at" => "2017-08-03T14:02:18Z"
-          }
+          },
+          "publishing_app" => "publisher",
         }
 
         expect(actions).to receive(:save)
@@ -143,14 +145,16 @@ RSpec.describe GovukIndex::PublishingEventWorker do
       {
         "base_path" => "/cheese",
         "document_type" => "help_page",
-        "title" => "We love cheese"
+        "title" => "We love cheese",
+        "publishing_app" => "publisher",
       }
     end
     let(:payload2) do
       {
         "base_path" => "/cheese",
         "document_type" => "help_page",
-        "title" => "We love cheese"
+        "title" => "We love cheese",
+        "publishing_app" => "publisher",
       }
     end
     let(:payload_delete) do
