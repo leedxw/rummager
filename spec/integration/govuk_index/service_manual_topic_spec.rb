@@ -19,13 +19,13 @@ RSpec.describe "Service Manual Topic publishing" do
     random_example = generate_random_example(
       schema: "service_manual_topic",
       payload: {
-        document_type: "service_manual_topic",
+        publishing_app: "service-manual-publisher",
         title: "Service Manual title",
         description: "Service Manual description"
       },
     )
 
-    allow(GovukIndex::MigratedFormats).to receive(:indexable_formats).and_return("service_manual_topic" => :all)
+    allow(GovukIndex::PublishingApps).to receive(:indexable_publishing_apps).and_return("service-manual-publisher" => :all)
 
     @queue.publish(random_example.to_json, content_type: "application/json")
 

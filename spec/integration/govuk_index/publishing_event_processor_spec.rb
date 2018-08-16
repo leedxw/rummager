@@ -17,7 +17,7 @@ RSpec.describe 'GovukIndex::PublishingEventProcessorTest' do
     end
 
     it "saves new documents to elasticsearch" do
-      allow(GovukIndex::MigratedFormats).to receive(:indexable?).and_return(true)
+      allow(GovukIndex::PublishingApps).to receive(:indexable?).and_return(true)
       random_example = generate_random_example(
         payload: { document_type: "help_page", payload_version: 123 },
       )
@@ -36,7 +36,7 @@ RSpec.describe 'GovukIndex::PublishingEventProcessorTest' do
     end
 
     it "includes popularity data when available" do
-      allow(GovukIndex::MigratedFormats).to receive(:indexable?).and_return(true)
+      allow(GovukIndex::PublishingApps).to receive(:indexable?).and_return(true)
       random_example = generate_random_example(
         payload: { document_type: "help_page", payload_version: 123 },
       )
@@ -83,7 +83,7 @@ RSpec.describe 'GovukIndex::PublishingEventProcessorTest' do
 
   context "test queue handles" do
     it "can save multiple documents in a batch" do
-      allow(GovukIndex::MigratedFormats).to receive(:indexable?).and_return(true)
+      allow(GovukIndex::PublishingApps).to receive(:indexable?).and_return(true)
       random_example_a = generate_random_example(
         payload: { document_type: "help_page", payload_version: 123 },
       )
@@ -133,8 +133,8 @@ RSpec.describe 'GovukIndex::PublishingEventProcessorTest' do
     end
 
     it "alerts on unknown formats - neither white or black listed" do
-      allow(GovukIndex::MigratedFormats).to receive(:indexable?).and_return(false)
-      allow(GovukIndex::MigratedFormats).to receive(:non_indexable?).and_return(false)
+      allow(GovukIndex::PublishingApps).to receive(:indexable?).and_return(false)
+      allow(GovukIndex::PublishingApps).to receive(:non_indexable?).and_return(false)
 
       logger = double(info: true, debug: true)
       worker = GovukIndex::PublishingEventWorker.new
@@ -149,8 +149,8 @@ RSpec.describe 'GovukIndex::PublishingEventProcessorTest' do
     end
 
     it "will consider a format that is both white and black listed to be blacklisted" do
-      allow(GovukIndex::MigratedFormats).to receive(:indexable?).and_return(true)
-      allow(GovukIndex::MigratedFormats).to receive(:non_indexable?).and_return(true)
+      allow(GovukIndex::PublishingApps).to receive(:indexable?).and_return(true)
+      allow(GovukIndex::PublishingApps).to receive(:non_indexable?).and_return(true)
 
       logger = double(info: true, debug: true)
       worker = GovukIndex::PublishingEventWorker.new
@@ -171,11 +171,11 @@ RSpec.describe 'GovukIndex::PublishingEventProcessorTest' do
 
       homepage_example = generate_random_example(
         schema: 'special_route',
-        payload: { document_type: "special_route", base_path: '/homepage', payload_version: 123 },
+        payload: { publishing_app: "frontend", base_path: '/homepage', payload_version: 123 },
       )
       help_example = generate_random_example(
         schema: 'special_route',
-        payload: { document_type: "special_route", base_path: '/help', payload_version: 123 },
+        payload: { publishing_app: "frontend", base_path: '/help', payload_version: 123 },
       )
 
       expect(logger).to receive(:info).with("test.route -> BLACKLISTED #{homepage_example['base_path']} edition")

@@ -18,7 +18,7 @@ RSpec.describe "HMRC manual publishing" do
   it "indexes an HMRC manual" do
     random_example = generate_random_example(
       schema: "hmrc_manual",
-      payload: { document_type: "hmrc_manual" },
+      payload: { publishing_app: "hmrc-manuals-api" },
       details: {
         change_notes: [
           {
@@ -32,7 +32,7 @@ RSpec.describe "HMRC manual publishing" do
       },
     )
 
-    allow(GovukIndex::MigratedFormats).to receive(:indexable_formats).and_return("hmrc_manual" => :all)
+    allow(GovukIndex::PublishingApps).to receive(:indexable_publishing_apps).and_return("hmrc-manuals-api" => :all)
 
     @queue.publish(random_example.to_json, content_type: "application/json")
 
@@ -46,7 +46,7 @@ RSpec.describe "HMRC manual publishing" do
   it "indexes an HMRC manual section" do
     random_example = generate_random_example(
       schema: "hmrc_manual_section",
-      payload: { document_type: "hmrc_manual_section" },
+      payload: { publishing_app: "hmrc-manuals-api" },
       details: {
         section_id: "some_section_id",
         manual: {
@@ -55,7 +55,7 @@ RSpec.describe "HMRC manual publishing" do
       },
     )
 
-    allow(GovukIndex::MigratedFormats).to receive(:indexable_formats).and_return("hmrc_manual_section" => :all)
+    allow(GovukIndex::PublishingApps).to receive(:indexable_publishing_apps).and_return("hmrc-manuals-api" => :all)
 
     @queue.publish(random_example.to_json, content_type: "application/json")
 

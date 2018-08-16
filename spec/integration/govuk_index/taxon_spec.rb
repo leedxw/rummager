@@ -15,26 +15,26 @@ RSpec.describe "taxon publishing" do
     consumer.run
   end
 
-  it "indexes a taxon page" do
+  it "indexes a whitelisted taxon page" do
     random_example = generate_random_example(
       schema: "taxon",
       payload: {
-        document_type: "taxon",
-        base_path: "/transport/all",
+        publishing_app: "content-tagger",
+        base_path: "/world/afghanistan",
       }
     )
 
-    allow(GovukIndex::MigratedFormats).to receive(:indexable_formats).and_return("taxon" => :all)
+    allow(GovukIndex::PublishingApps).to receive(:indexable_routes).and_return("content-tagger" => ["/world/afghanistan"])
     @queue.publish(random_example.to_json, content_type: "application/json")
 
     expected_document = { "link" => random_example["base_path"] }
     expect_document_is_in_rummager(expected_document, index: "govuk_test", type: "edition")
   end
 
-  it "removes a taxon page" do
-    allow(GovukIndex::MigratedFormats).to receive(:indexable_formats).and_return("taxon" => :all)
+  it "removes a whitelisted taxon page" do
+    allow(GovukIndex::PublishingApps).to receive(:indexable_routes).and_return("content-tagger" => ["/world/afghanistan"])
     content_id = "b7e993e1-9afa-4235-99a4-479caa240267"
-    document = { "link" => "/transport/all", "content_id" => content_id }
+    document = { "link" => "/world/afghanistan", "content_id" => content_id }
 
     commit_document('govuk_test', document, id: content_id, type: 'taxon')
     expect_document_is_in_rummager(document, id: content_id, index: "govuk_test", type: "taxon")

@@ -20,13 +20,14 @@ RSpec.describe "external content publishing" do
       schema: "external_content",
       payload: {
         document_type: "external_content",
+        publishing_app: "search-admin"
       },
       details: {
         hidden_search_terms: ["some, search, keywords"]
       },
     )
 
-    allow(GovukIndex::MigratedFormats).to receive(:indexable_formats).and_return("recommended-link" => :all)
+    allow(GovukIndex::PublishingApps).to receive(:indexable_publishing_apps).and_return("search-admin" => :all)
 
     @queue.publish(random_example.to_json, content_type: "application/json")
 

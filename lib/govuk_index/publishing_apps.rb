@@ -12,8 +12,6 @@ module GovukIndex
         indexable_routes[app]&.include?(path)
     end
 
-  private
-
     def indexable_publishing_apps
       @indexable_publishing_apps ||= convert_to_allowed_hash(data_file['indexable_publishing_apps'])
     end
@@ -25,6 +23,8 @@ module GovukIndex
     def non_indexable_publishing_apps
       @blacklist_publishing_apps ||= data_file['non_indexable_publishing_apps']
     end
+
+  private
 
     def data_file
       @data_file ||= YAML.load_file(File.join(__dir__, '../../config/govuk_index/publishing_apps.yaml'))

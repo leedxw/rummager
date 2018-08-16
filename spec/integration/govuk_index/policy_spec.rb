@@ -54,7 +54,7 @@ RSpec.describe "Policy publishing" do
       schema: "policy",
       payload: {
         description: "Description about policy.",
-        document_type: "policy",
+        publishing_app: "specialist-publisher",
         base_path: "/government/policies/hs2-high-speed-rail",
         expanded_links: {
           working_groups: working_groups,

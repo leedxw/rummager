@@ -19,13 +19,13 @@ RSpec.describe "Collections publishing" do
     random_example = generate_random_example(
       schema: "mainstream_browse_page",
       payload: {
-        document_type: "mainstream_browse_page",
         description: "Mainstream browse page description",
         base_path: "/browse/benefits",
+        publishing_app: "collections-publisher",
       },
     )
 
-    allow(GovukIndex::MigratedFormats).to receive(:indexable_formats).and_return("mainstream_browse_page" => :all)
+    allow(GovukIndex::PublishingApps).to receive(:indexable_publishing_apps).and_return("collections-publisher" => :all)
 
     @queue.publish(random_example.to_json, content_type: "application/json")
 
@@ -42,13 +42,13 @@ RSpec.describe "Collections publishing" do
     random_example = generate_random_example(
       schema: "topic",
       payload: {
-        document_type: "topic",
         description: "Specialist sector page description",
         base_path: "/topic/benefits-credits",
+        publishing_app: "collections-publisher",
       },
     )
 
-    allow(GovukIndex::MigratedFormats).to receive(:indexable_formats).and_return("specialist_sector" => :all)
+    allow(GovukIndex::PublishingApps).to receive(:indexable_publishing_apps).and_return("collections-publisher" => :all)
 
     @queue.publish(random_example.to_json, content_type: "application/json")
 

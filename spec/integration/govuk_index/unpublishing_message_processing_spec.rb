@@ -29,7 +29,7 @@ RSpec.describe 'GovukIndex::UnpublishingMessageProcessing' do
   end
 
   it "unpublish withdrawn messages will set is withdrawn flag" do
-    allow(GovukIndex::MigratedFormats).to receive(:migrated_formats).and_return("help_page" => :all)
+    allow(GovukIndex::PublishingApps).to receive(:indexable_publishing_apps).and_return("publisher" => :all)
 
     message = unpublishing_event_message(
       "help_page",
@@ -39,7 +39,8 @@ RSpec.describe 'GovukIndex::UnpublishingMessageProcessing' do
         withdrawn_notice: {
           "explanation" => "<div class=\"govspeak\"><p>test 2</p>\n</div>",
           "withdrawn_at" => "2017-08-03T14:02:18Z"
-        }
+        },
+        publishing_app: "publisher"
       }
     )
     base_path = message.payload['base_path']

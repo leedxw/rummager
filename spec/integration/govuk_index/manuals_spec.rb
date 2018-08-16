@@ -20,7 +20,8 @@ RSpec.describe "Manual publishing" do
       schema: "manual",
       payload: {
         document_type: "manual",
-        description: "Manual description"
+        description: "Manual description",
+        publishing_app: "manuals-publisher",
       },
       details: {
         change_notes: [
@@ -33,8 +34,7 @@ RSpec.describe "Manual publishing" do
         ]
       },
     )
-
-    allow(GovukIndex::MigratedFormats).to receive(:indexable_formats).and_return("manual" => :all)
+    allow(GovukIndex::PublishingApps).to receive(:indexable_publishing_apps).and_return("manuals-publisher" => :all)
 
     @queue.publish(random_example.to_json, content_type: "application/json")
 
@@ -51,7 +51,7 @@ RSpec.describe "Manual publishing" do
   it "indexes a manual section" do
     random_example = generate_random_example(
       schema: "manual_section",
-      payload: { document_type: "manual_section" },
+      payload: { document_type: "manual_section", publishing_app: "manuals-publisher" },
       details: {
         manual: {
           "base_path": "/parent/manual/path"
@@ -59,7 +59,7 @@ RSpec.describe "Manual publishing" do
       },
     )
 
-    allow(GovukIndex::MigratedFormats).to receive(:indexable_formats).and_return("manual_section" => :all)
+    allow(GovukIndex::PublishingApps).to receive(:indexable_publishing_apps).and_return("manuals-publisher" => :all)
 
     @queue.publish(random_example.to_json, content_type: "application/json")
 
