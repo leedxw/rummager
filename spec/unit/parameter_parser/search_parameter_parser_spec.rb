@@ -630,13 +630,13 @@ RSpec.describe SearchParameterParser do
     expect(p.error).to eq("")
     expect(p).to be_valid
     expect(expected_params(
-      aggregates: {
-        "organisations" => expected_aggregate_params(
-          requested: 10,
-          examples: 5,
-          example_fields: %w(slug title),
-          example_scope: :global,
-      ) }
+             aggregates: {
+               "organisations" => expected_aggregate_params(
+                 requested: 10,
+                 examples: 5,
+                 example_fields: %w(slug title),
+                 example_scope: :global,
+             ) }
     )).to eq(p.parsed_params)
   end
 
@@ -648,11 +648,11 @@ RSpec.describe SearchParameterParser do
     expect(p.error).to eq("")
     expect(p).to be_valid
     expect(expected_params(
-      aggregates: {
-        "organisations" => expected_aggregate_params(
-          requested: 10,
-          order: [[:filtered, 1], [:"value.link", 1], [:count, -1]],
-      ) }
+             aggregates: {
+               "organisations" => expected_aggregate_params(
+                 requested: 10,
+                 order: [[:filtered, 1], [:"value.link", 1], [:count, -1]],
+             ) }
     )).to eq(p.parsed_params)
   end
 
@@ -675,11 +675,11 @@ RSpec.describe SearchParameterParser do
     expect(p.error).to eq("")
     expect(p).to be_valid
     expect(expected_params(
-      aggregates: {
-        "organisations" => expected_aggregate_params(
-          requested: 10,
-          order: [[:filtered, 1], [:"value.link", 1], [:count, -1]],
-      ) }
+             aggregates: {
+               "organisations" => expected_aggregate_params(
+                 requested: 10,
+                 order: [[:filtered, 1], [:"value.link", 1], [:count, -1]],
+             ) }
     )).to eq(p.parsed_params)
   end
 
@@ -691,11 +691,11 @@ RSpec.describe SearchParameterParser do
     expect(p.error).to eq("")
     expect(p).to be_valid
     expect(expected_params(
-      aggregates: {
-        "organisations" => expected_aggregate_params(
-          requested: 10,
-          scope: :all_filters,
-      ) }
+             aggregates: {
+               "organisations" => expected_aggregate_params(
+                 requested: 10,
+                 scope: :all_filters,
+             ) }
     )).to eq(p.parsed_params)
   end
 
@@ -727,13 +727,13 @@ RSpec.describe SearchParameterParser do
     expect(p.error).to eq("")
     expect(p).to be_valid
     expect(expected_params(
-      aggregates: {
-        "organisations" => expected_aggregate_params(
-          requested: 10,
-          examples: 5,
-          example_fields: %w(slug title link),
-          example_scope: :global,
-      ) }
+             aggregates: {
+               "organisations" => expected_aggregate_params(
+                 requested: 10,
+                 examples: 5,
+                 example_fields: %w(slug title link),
+                 example_scope: :global,
+             ) }
     )).to eq(p.parsed_params)
   end
 
@@ -754,13 +754,13 @@ RSpec.describe SearchParameterParser do
 
     expect(p).to be_valid
     expect(expected_params(
-      aggregates: {
-        "organisations" => expected_aggregate_params(
-          requested: 10,
-          examples: 5,
-          example_fields: %w(slug title),
-          example_scope: :query,
-      ) }
+             aggregates: {
+               "organisations" => expected_aggregate_params(
+                 requested: 10,
+                 examples: 5,
+                 example_fields: %w(slug title),
+                 example_scope: :query,
+             ) }
     )).to eq(p.parsed_params)
   end
 
