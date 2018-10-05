@@ -163,7 +163,7 @@ RSpec.describe 'AnalyticsDataTest' do
   end
 
   it "fetches all rows" do
-    fixture_file = File.expand_path("../fixtures/content_for_analytics.json", __FILE__)
+    fixture_file = File.expand_path('fixtures/content_for_analytics.json', __dir__)
     documents = JSON.parse(File.read(fixture_file))
     documents.each do |document|
       commit_document("government_test", document)
