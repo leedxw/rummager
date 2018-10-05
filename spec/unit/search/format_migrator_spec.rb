@@ -25,13 +25,13 @@ RSpec.describe Search::FormatMigrator do
         filter: {
           bool: {
             should: [base_query],
-            must_not: { terms: { format: ['help_page'] } },
+            must_not: { terms: { format: %w[help_page] } },
           }
         },
         no_match_filter: {
           bool: {
             should: [base_query],
-            must: { terms: { format: ['help_page'] } },
+            must: { terms: { format: %w[help_page] } },
           }
         }
       }
@@ -58,12 +58,12 @@ RSpec.describe Search::FormatMigrator do
         indices: %w(government_test),
         filter: {
           bool: {
-            must_not: { terms: { format: ['help_page'] } },
+            must_not: { terms: { format: %w[help_page] } },
           }
         },
         no_match_filter: {
           bool: {
-            must: { terms: { format: ['help_page'] } },
+            must: { terms: { format: %w[help_page] } },
           }
         }
       }

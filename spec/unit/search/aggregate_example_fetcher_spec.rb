@@ -123,7 +123,7 @@ RSpec.describe Search::AggregateExampleFetcher do
           query_for_example_global("sector", "sector_2", @example_fields),
         ]).and_return({ "responses" => [
           response_for_example(3, %w(example_1 example_2)),
-          response_for_example(1, ["example_3"]),
+          response_for_example(1, %w[example_3]),
         ] })
 
       expect(
@@ -183,7 +183,7 @@ RSpec.describe Search::AggregateExampleFetcher do
           query_for_example_query("sector", "sector_2", @example_fields, query, filter),
         ]).and_return({ "responses" => [
           response_for_example(3, %w(example_1 example_2)),
-          response_for_example(1, ["example_3"]),
+          response_for_example(1, %w[example_3]),
         ] })
 
       expect(

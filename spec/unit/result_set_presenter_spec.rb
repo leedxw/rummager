@@ -30,7 +30,7 @@ RSpec.describe Search::ResultSetPresenter do
       "fields" => {
         "title" => "Dairy farming and schemes",
         "link" => "/dairy-farming-and-schemes",
-        "policy_areas" => ["farming"],
+        "policy_areas" => %w[farming],
       },
     }]
   end
@@ -363,7 +363,7 @@ RSpec.describe Search::ResultSetPresenter do
       @output = described_class.new(
         search_params: Search::QueryParameters.new(
           start: 0,
-          filters: [text_filter("organisations", ["hmrc"])],
+          filters: [text_filter("organisations", %w[hmrc])],
           aggregates: { "organisations" => aggregate_params(2) },
           aggregate_name: :aggregates,
         ),

@@ -81,7 +81,7 @@ RSpec.describe SearchIndices::Index, 'Advanced Search' do
     @wrapper.advanced_search(default_params.merge('mainstream_browse_pages' => 'jones'))
 
     stub_empty_search(body: /#{Regexp.escape("\"term\":{\"mainstream_browse_pages\":\"jones\"}")}/)
-    @wrapper.advanced_search(default_params.merge('mainstream_browse_pages' => ['jones']))
+    @wrapper.advanced_search(default_params.merge('mainstream_browse_pages' => %w[jones]))
   end
 
   it "multiple value filter param is turned into a terms filter" do
@@ -91,7 +91,7 @@ RSpec.describe SearchIndices::Index, 'Advanced Search' do
 
   it "filter params are turned into anded term filters on that property" do
     stub_empty_search(body: /#{Regexp.escape("\"filter\":{\"and\":[{\"term\":{\"mainstream_browse_pages\":\"jones\"}},{\"term\":{\"link\":\"richards\"}},")}/)
-    @wrapper.advanced_search(default_params.merge('mainstream_browse_pages' => ['jones'], 'link' => ['richards']))
+    @wrapper.advanced_search(default_params.merge('mainstream_browse_pages' => %w[jones], 'link' => %w[richards]))
   end
 
   it "filter params on a boolean mapping property are convered to true based on something that looks truthy" do

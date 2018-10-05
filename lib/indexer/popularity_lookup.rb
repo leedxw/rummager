@@ -16,7 +16,7 @@ module Indexer
             path_components: links
           }
         },
-        fields: ["rank_14"],
+        fields: %w[rank_14],
         sort: [
           { rank_14: { order: "asc" } }
         ],

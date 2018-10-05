@@ -16,7 +16,7 @@ RSpec.describe 'SearchTest' do
 
     get "/search?q=serch&suggest=spelling"
 
-    expect(parsed_response['suggested_queries']).to eq(['search'])
+    expect(parsed_response['suggested_queries']).to eq(%w[search])
   end
 
   it "spell checking with blocklisted typo" do
@@ -663,7 +663,7 @@ private
       "title" => "Somewhat Unique CMA Case",
       "link" => "/cma-cases/somewhat-unique-cma-case",
       "indexable_content" => "Mergers of cheeses and faces",
-      "specialist_sectors" => ["farming"],
+      "specialist_sectors" => %w[farming],
       "opened_date" => "2014-04-01",
       "format" => "cma_case",
     }.merge(attributes)

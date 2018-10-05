@@ -57,7 +57,7 @@ RSpec.describe QueryComponents::Filter do
         make_search_params(
           [
             text_filter("organisations", ["hm-magic", "hmrc"]),
-            reject_filter("mainstream_browse_pages", ["benefits"]),
+            reject_filter("mainstream_browse_pages", %w[benefits]),
           ]
         )
       )
@@ -67,7 +67,7 @@ RSpec.describe QueryComponents::Filter do
       expect(result).to eq(
         bool: {
           must: { "terms" => { "organisations" => ["hm-magic", "hmrc"] } },
-          must_not: { "terms" => { "mainstream_browse_pages" => ["benefits"] } },
+          must_not: { "terms" => { "mainstream_browse_pages" => %w[benefits] } },
         }
       )
     end
@@ -79,7 +79,7 @@ RSpec.describe QueryComponents::Filter do
         make_search_params(
           [
             text_filter("organisations", ["hm-magic", "hmrc"]),
-            text_filter("mainstream_browse_pages", ["levitation"]),
+            text_filter("mainstream_browse_pages", %w[levitation]),
           ],
         )
       )
@@ -89,7 +89,7 @@ RSpec.describe QueryComponents::Filter do
       expect(result).to eq(
         and: [
           { "terms" => { "organisations" => ["hm-magic", "hmrc"] } },
-          { "terms" => { "mainstream_browse_pages" => ["levitation"] } },
+          { "terms" => { "mainstream_browse_pages" => %w[levitation] } },
         ].compact
       )
     end

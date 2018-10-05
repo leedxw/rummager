@@ -48,7 +48,7 @@ RSpec.describe GovukIndex::ElasticsearchPresenter, 'Specialist formats' do
       "business_stages" => ["start-up"],
       "continuation_link" => "https://www.gov.uk",
       "industries" => ["information-technology-digital-and-creative"],
-      "types_of_support" => ["finance"],
+      "types_of_support" => %w[finance],
       "will_continue_on" => "on GOV.UK",
     }
     document = build_example_with_metadata(custom_metadata)
@@ -61,12 +61,12 @@ RSpec.describe GovukIndex::ElasticsearchPresenter, 'Specialist formats' do
       "closed_date" => "2015-01-01",
       "case_type" => "ca98-and-civil-cartels",
       "case_state" => "closed",
-      "market_sector" => ["energy"],
+      "market_sector" => %w[energy],
       "outcome_type" => "ca98-no-grounds-for-action-non-infringement",
     }
     special_formated_output = {
       "case_type" => ["ca98-and-civil-cartels"],
-      "case_state" => ["closed"],
+      "case_state" => %w[closed],
     }
     document = build_example_with_metadata(custom_metadata)
     expect_document_include_hash(document, custom_metadata.merge(special_formated_output))
@@ -80,7 +80,7 @@ RSpec.describe GovukIndex::ElasticsearchPresenter, 'Specialist formats' do
       "funding_amount" => ["201-to-300"],
     }
     special_formated_output = {
-      "grant_type" => ["option"],
+      "grant_type" => %w[option],
     }
     document = build_example_with_metadata(custom_metadata)
     expect_document_include_hash(document, custom_metadata.merge(special_formated_output))
@@ -89,9 +89,9 @@ RSpec.describe GovukIndex::ElasticsearchPresenter, 'Specialist formats' do
   it "dfid research output" do
     custom_metadata = {
       "dfid_document_type" => "book_chapter",
-      "country" => ["GB"],
+      "country" => %w[GB],
       "dfid_authors" => ["Mr. Potato Head", "Mrs. Potato Head"],
-      "dfid_theme" => ["infrastructure"],
+      "dfid_theme" => %w[infrastructure],
       "first_published_at" => "2016-04-28",
     }
     document = build_example_with_metadata(custom_metadata)
@@ -140,7 +140,7 @@ RSpec.describe GovukIndex::ElasticsearchPresenter, 'Specialist formats' do
       "funding_source" => ["european-regional-development-fund"],
     }
     special_formated_output = {
-      "fund_state" => ["open"],
+      "fund_state" => %w[open],
     }
     document = build_example_with_metadata(custom_metadata)
     expect_document_include_hash(document, custom_metadata.merge(special_formated_output))
@@ -155,7 +155,7 @@ RSpec.describe GovukIndex::ElasticsearchPresenter, 'Specialist formats' do
       "funding_source" => ["european-regional-development-fund"],
     }
     special_formated_output = {
-      "fund_state" => ["open"],
+      "fund_state" => %w[open],
     }
     document = build_example_with_metadata(custom_metadata)
     expect_document_include_hash(document, custom_metadata.merge(special_formated_output))
