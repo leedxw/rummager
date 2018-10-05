@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe SitemapGenerator do
-  it "should generate sitemap" do
+  it "generates sitemap" do
     sitemap = described_class.new(index_names: '')
 
     sitemap_xml = sitemap.generate_xml([
