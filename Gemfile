@@ -3,11 +3,11 @@ source "https://rubygems.org"
 gem "activesupport", "~> 5.2.1"
 gem "elasticsearch", "~> 2"
 gem "gds-api-adapters", "~> 53.1"
+gem "govuk-lint", "~> 3.9.0"
 gem "govuk_app_config", "~> 1.10.0"
 gem "govuk_document_types", "~> 0.9.0"
-gem "govuk-lint", "~> 3.9.0"
-gem "logging", "~> 2.2.2"
 gem "govuk_sidekiq", "~> 3.0.2"
+gem "logging", "~> 2.2.2"
 gem "loofah"
 gem "nokogiri", "~> 1.8.5"
 gem "plek", "~> 2.1"
@@ -28,8 +28,8 @@ end
 
 group :test do
   gem 'bunny-mock', '~> 1.7'
-  gem 'govuk_schemas', '~> 3.2.0'
   gem 'govuk-content-schema-test-helpers', '~> 1.6.1'
+  gem 'govuk_schemas', '~> 3.2.0'
   gem "rack-test", "~> 1.1.0"
   gem 'rspec'
   gem "simplecov", "~> 0.16.1"
