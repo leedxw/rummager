@@ -337,8 +337,7 @@ RSpec.describe SearchParameterParser do
           text_filter("organisations", [
               "hm-magic",
               "hmrc",
-            ]
-          )
+            ])
         ],
       )
     ).to eq(

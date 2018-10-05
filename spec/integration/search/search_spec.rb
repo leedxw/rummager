@@ -11,8 +11,7 @@ RSpec.describe 'SearchTest' do
     commit_document("government_test",
       "title" => "I am the result",
       "description" => "This is a test search result",
-      "link" => "/some-nice-link"
-    )
+      "link" => "/some-nice-link")
 
     get "/search?q=serch&suggest=spelling"
 
@@ -215,19 +214,23 @@ RSpec.describe 'SearchTest' do
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-03-30", "link" => "/old-cma-with-date"),
-      type: "cma_case")
+      type: "cma_case"
+)
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-03-30T23:00:00.000+00:00", "link" => "/old-cma-with-datetime"),
-      type: "cma_case")
+      type: "cma_case"
+)
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-03-31", "link" => "/matching-cma-with-date"),
-      type: "cma_case")
+      type: "cma_case"
+)
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-03-31T00:00:00.000+00:00", "link" => "/matching-cma-with-datetime"),
-      type: "cma_case")
+      type: "cma_case"
+)
 
     get "/search?filter_document_type=cma_case&filter_opened_date=from:2014-03-31"
 
@@ -242,19 +245,23 @@ RSpec.describe 'SearchTest' do
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-03-31", "link" => "/old-cma-with-date"),
-      type: "cma_case")
+      type: "cma_case"
+)
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-03-31T13:59:59.000+00:00", "link" => "/old-cma-with-datetime"),
-      type: "cma_case")
+      type: "cma_case"
+)
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-04-01", "link" => "/matching-cma-with-date"),
-      type: "cma_case")
+      type: "cma_case"
+)
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-03-31T14:00:00.000+00:00", "link" => "/matching-cma-with-datetime"),
-      type: "cma_case")
+      type: "cma_case"
+)
 
     get "/search?filter_document_type=cma_case&filter_opened_date=from:2014-03-31 14:00:00"
 
@@ -269,19 +276,23 @@ RSpec.describe 'SearchTest' do
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-04-02", "link" => "/matching-cma-with-date"),
-      type: "cma_case")
+      type: "cma_case"
+)
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-04-02T05:00:00.000+00:00", "link" => "/matching-cma-with-datetime"),
-      type: "cma_case")
+      type: "cma_case"
+)
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-04-03", "link" => "/future-cma-with-date"),
-      type: "cma_case")
+      type: "cma_case"
+)
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-04-03T00:00:00.000+00:00", "link" => "/future-cma-with-datetime"),
-      type: "cma_case")
+      type: "cma_case"
+)
 
     get "/search?filter_document_type=cma_case&filter_opened_date=to:2014-04-02"
 
@@ -296,19 +307,23 @@ RSpec.describe 'SearchTest' do
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-04-02", "link" => "/matching-cma-with-date"),
-      type: "cma_case")
+      type: "cma_case"
+)
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-04-02T11:00:00.000+00:00", "link" => "/matching-cma-with-datetime"),
-      type: "cma_case")
+      type: "cma_case"
+)
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-04-03", "link" => "/future-cma-with-date"),
-      type: "cma_case")
+      type: "cma_case"
+)
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2014-04-02T11:00:01.000+00:00", "link" => "/future-cma-with-datetime"),
-      type: "cma_case")
+      type: "cma_case"
+)
 
     get "/search?filter_document_type=cma_case&filter_opened_date=to:2014-04-02 11:00:00"
 
@@ -323,11 +338,13 @@ RSpec.describe 'SearchTest' do
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2017-07-01T11:20:00.000-03:00", "link" => "/cma-1"),
-      type: "cma_case")
+      type: "cma_case"
+)
     commit_document(
       "govuk_test",
       cma_case_attributes("opened_date" => "2017-07-02T00:15:00.000+01:00", "link" => "/cma-2"),
-      type: "cma_case")
+      type: "cma_case"
+)
 
     get "/search?filter_document_type=cma_case&filter_opened_date=from:2017-07-01 12:00,to:2017-07-01 23:30:00"
 
@@ -364,15 +381,13 @@ RSpec.describe 'SearchTest' do
     commit_document("government_test",
       "title" => 'Advice on Treatment of Dragons',
       "link" => '/dragon-guide',
-      "organisations" => ['/ministry-of-magic']
-    )
+      "organisations" => ['/ministry-of-magic'])
 
     commit_document("government_test",
       "slug" => '/ministry-of-magic',
       "title" => 'Ministry of Magic',
       "link" => '/ministry-of-magic-site',
-      "format" => 'organisation'
-    )
+      "format" => 'organisation')
 
     get "/search.json?q=dragons"
 
@@ -472,8 +487,7 @@ RSpec.describe 'SearchTest' do
     commit_document("government_test",
       "title" => 'Advice on Treatment of Dragons',
       "link" => '/dragon-guide',
-      "topic_content_ids" => ['topic-content-id']
-    )
+      "topic_content_ids" => ['topic-content-id'])
 
     commit_document("govuk_test",
       "content_id" => 'topic-content-id',
@@ -481,8 +495,7 @@ RSpec.describe 'SearchTest' do
       "title" => 'Magic topic',
       "link" => '/magic-topic-site',
       # TODO: we should rename this format to `topic` and update all apps
-      "format" => 'specialist_sector'
-    )
+      "format" => 'specialist_sector')
 
     get "/search.json?q=dragons"
 
@@ -508,8 +521,7 @@ RSpec.describe 'SearchTest' do
     commit_document("government_test",
       "title" => 'Advice on Treatment of Dragons',
       "link" => '/dragon-guide',
-      "topic_content_ids" => ['topic-content-id']
-    )
+      "topic_content_ids" => ['topic-content-id'])
 
     commit_document("government_test",
       "content_id" => 'topic-content-id',
@@ -517,8 +529,7 @@ RSpec.describe 'SearchTest' do
       "title" => 'Magic topic',
       "link" => '/magic-topic-site',
       # TODO: we should rename this format to `topic` and update all apps
-      "format" => 'specialist_sector'
-    )
+      "format" => 'specialist_sector')
     get "/search.json?filter_topic_content_ids[]=topic-content-id"
 
     expect(first_result['expanded_topics']).to be_truthy
@@ -529,8 +540,7 @@ RSpec.describe 'SearchTest' do
       "title" => "I am the result",
       "description" => "This is a test search result",
       "link" => "/some-nice-link",
-      "is_withdrawn" => true
-    )
+      "is_withdrawn" => true)
 
     get "/search?q=test"
     expect(parsed_response.fetch("total")).to eq(0)
@@ -541,8 +551,7 @@ RSpec.describe 'SearchTest' do
       "title" => "I am the result",
       "description" => "This is a test search result",
       "link" => "/some-nice-link",
-      "is_withdrawn" => true
-    )
+      "is_withdrawn" => true)
 
     get "/search?q=test&debug=include_withdrawn&fields[]=is_withdrawn"
     expect(parsed_response.fetch("total")).to eq(1)
@@ -555,8 +564,7 @@ RSpec.describe 'SearchTest' do
       "organisation" => "Test Org",
       "description" => "This is a test search result",
       "link" => "/some-nice-link",
-      "is_withdrawn" => true
-    )
+      "is_withdrawn" => true)
 
     get "/search?q=test&debug=include_withdrawn&aggregate_mainstream_browse_pages=2"
     expect(parsed_response.fetch("total")).to eq(1)
@@ -573,8 +581,7 @@ RSpec.describe 'SearchTest' do
       "title" => "I am the result",
       "description" => "This is a test search result",
       "link" => "/some-nice-link",
-      "taxons" => ["eb2093ef-778c-4105-9f33-9aa03d14bc5c"]
-    )
+      "taxons" => ["eb2093ef-778c-4105-9f33-9aa03d14bc5c"])
 
     get "/search?q=test&fields[]=taxons"
     expect(parsed_response.fetch("total")).to eq(1)
@@ -588,8 +595,7 @@ RSpec.describe 'SearchTest' do
       "title" => "I am the result",
       "description" => "This is a test search result",
       "link" => "/some-nice-link",
-      "taxons" => ["eb2093ef-778c-4105-9f33-9aa03d14bc5c"]
-    )
+      "taxons" => ["eb2093ef-778c-4105-9f33-9aa03d14bc5c"])
 
     get "/search?filter_taxons=eb2093ef-778c-4105-9f33-9aa03d14bc5c"
 
@@ -611,8 +617,7 @@ RSpec.describe 'SearchTest' do
       "description" => "This is a test search result",
       "link" => "/some-nice-link",
       "taxons" => ["eb2093ef-778c-4105-9f33-9aa03d14bc5c"],
-      "part_of_taxonomy_tree" => %w(eb2093ef-778c-4105-9f33-9aa03d14bc5c aa2093ef-778c-4105-9f33-9aa03d14bc5c)
-    )
+      "part_of_taxonomy_tree" => %w(eb2093ef-778c-4105-9f33-9aa03d14bc5c aa2093ef-778c-4105-9f33-9aa03d14bc5c))
 
     get "/search?filter_part_of_taxonomy_tree=eb2093ef-778c-4105-9f33-9aa03d14bc5c"
 

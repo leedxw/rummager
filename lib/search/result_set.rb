@@ -22,7 +22,8 @@ module Search
       Document.from_hash(
         hit["_source"].merge("_type" => hit["_type"], "_id" => hit["_id"]),
         elasticsearch_types,
-        hit["_score"])
+        hit["_score"]
+)
     end
   end
 end
