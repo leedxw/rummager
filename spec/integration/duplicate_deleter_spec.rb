@@ -29,7 +29,6 @@ RSpec.describe 'DuplicateDeleterTest' do
     )
     commit_document(
       "govuk_test",
-
       {
         "content_id" => "3c824d6b-d982-4426-9a7d-43f2b865e77c",
         "link" => "/an-example-page",
