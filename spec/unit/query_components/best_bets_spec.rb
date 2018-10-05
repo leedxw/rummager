@@ -37,8 +37,7 @@ RSpec.describe QueryComponents::BestBets do
         bool: {
           should: ['QUERY',
                    { function_score: { query: { terms: { link: ["/best-bet"] } }, boost_factor: 2000000 } },
-                   { function_score: { query: { terms: { link: ["/other-best-bet"] } }, boost_factor: 1000000 } }
-            ]
+                   { function_score: { query: { terms: { link: ["/other-best-bet"] } }, boost_factor: 1000000 } }]
         }
       }
 
