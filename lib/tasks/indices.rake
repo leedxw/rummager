@@ -194,7 +194,6 @@ You should run this task if the index schema has changed.
         deleted = docs["deleted"]
         statsd.gauge("#{index}_index.docs.deleted", deleted)
         puts "#{index}_index.docs.deleted=#{deleted}"
-
       rescue Elasticsearch::Transport::Transport::Errors::NotFound
         missing << index
       end
