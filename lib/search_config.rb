@@ -115,6 +115,6 @@ private
   end
 
   def config_for(kind)
-    YAML.load(ERB.new(File.read(config_path_for(kind))).result)
+    YAML.load(ERB.new(File.read(config_path_for(kind))).result) # rubcop:disable Security/YAMLLoad
   end
 end
