@@ -305,7 +305,7 @@ private
     }
     response = {
       "hits" => {
-        "hits" => paths_to_return.map {|path|
+        "hits" => paths_to_return.map { |path|
           {
             "_id" => path,
             "fields" => {
