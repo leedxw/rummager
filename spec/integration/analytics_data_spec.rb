@@ -142,7 +142,7 @@ RSpec.describe 'AnalyticsDataTest' do
         A page title
         with some
         line breaks
-        HEREDOC
+      HEREDOC
     }
     commit_document("government_test", document)
 
