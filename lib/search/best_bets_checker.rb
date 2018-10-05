@@ -127,7 +127,7 @@ module Search
           }
         },
         size: 1000,
-        fields: [:details, :stemmed_query_as_term]
+        fields: %i[details stemmed_query_as_term]
       }
     end
   end
