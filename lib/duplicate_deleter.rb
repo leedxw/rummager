@@ -65,5 +65,4 @@ class DuplicateDeleter
 private
 
   attr_reader :search_config
-
 end
