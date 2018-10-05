@@ -24,7 +24,7 @@ RSpec.describe GovukIndex::PageTrafficLoader do
     expect(GovukIndex::PageTrafficWorker).to receive(:perform_async).with(line2, 'new_index_name')
     expect(GovukIndex::PageTrafficWorker).to receive(:perform_async).with(line3, 'new_index_name')
 
-    loader = GovukIndex::PageTrafficLoader.new(iostream_batch_size: 2)
+    loader = described_class.new(iostream_batch_size: 2)
 
     loader.load_from(input)
   end
