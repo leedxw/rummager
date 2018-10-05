@@ -56,7 +56,6 @@ module Indexer
       hash.reject { |k, _| @field_to_ignore.include?(k) }
     end
 
-
     def log(msg)
       @io.puts "#{Time.now}: #{msg}"
     end
