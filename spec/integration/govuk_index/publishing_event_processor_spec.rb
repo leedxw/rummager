@@ -91,8 +91,8 @@ RSpec.describe 'GovukIndex::PublishingEventProcessorTest' do
         payload: { document_type: "help_page", payload_version: 123 },
       )
 
-      message_a = double(:msg1, payload: random_example_a, delivery_info: { routing_key: 'big.test' })
-      message_b = double(:msg2, payload: random_example_b, delivery_info: { routing_key: 'big.test' })
+      message_a = instance_double('GovukMessageQueueConsumer::Message', :msg1, payload: random_example_a, delivery_info: { routing_key: 'big.test' })
+      message_b = instance_double('GovukMessageQueueConsumer::Message', :msg2, payload: random_example_b, delivery_info: { routing_key: 'big.test' })
 
       expect(message_a).to receive(:ack)
       expect(message_b).to receive(:ack)
@@ -114,7 +114,7 @@ RSpec.describe 'GovukIndex::PublishingEventProcessorTest' do
     end
 
     it "skips blocklisted formats" do
-      logger = double(info: true, debug: true)
+      logger = instance_double('Logger', info: true, debug: true)
       worker = GovukIndex::PublishingEventWorker.new
       allow(worker).to receive(:logger).and_return(logger)
 
@@ -136,7 +136,7 @@ RSpec.describe 'GovukIndex::PublishingEventProcessorTest' do
       allow(GovukIndex::MigratedFormats).to receive(:indexable?).and_return(false)
       allow(GovukIndex::MigratedFormats).to receive(:non_indexable?).and_return(false)
 
-      logger = double(info: true, debug: true)
+      logger = instance_double('Logger', info: true, debug: true)
       worker = GovukIndex::PublishingEventWorker.new
       allow(worker).to receive(:logger).and_return(logger)
 
@@ -152,7 +152,7 @@ RSpec.describe 'GovukIndex::PublishingEventProcessorTest' do
       allow(GovukIndex::MigratedFormats).to receive(:indexable?).and_return(true)
       allow(GovukIndex::MigratedFormats).to receive(:non_indexable?).and_return(true)
 
-      logger = double(info: true, debug: true)
+      logger = instance_double('Logger', info: true, debug: true)
       worker = GovukIndex::PublishingEventWorker.new
       allow(worker).to receive(:logger).and_return(logger)
 
@@ -165,7 +165,7 @@ RSpec.describe 'GovukIndex::PublishingEventProcessorTest' do
     end
 
     it "can block/safe list specific base_paths within a format" do
-      logger = double(info: true, debug: true)
+      logger = instance_double('Logger', info: true, debug: true)
       worker = GovukIndex::PublishingEventWorker.new
       allow(worker).to receive(:logger).and_return(logger)
 

@@ -4,7 +4,7 @@ RSpec.describe Index::ElasticsearchProcessor do
   subject { described_class.govuk }
 
   it "saves valid document" do
-    presenter = double(:presenter)
+    presenter = instance_double('Presenter', :presenter)
     allow(presenter).to receive(:identifier).and_return(
       _type: "help_page",
       _id: "/cheese"
@@ -14,7 +14,7 @@ RSpec.describe Index::ElasticsearchProcessor do
       title: "We love cheese"
     )
 
-    client = double('client')
+    client = instance_double('Elasticsearch::Transport::Client', 'client')
     allow(Services).to receive('elasticsearch').and_return(client)
     expect(client).to receive(:bulk).with(index: SearchConfig.instance.govuk_index_name, body: [{ index: presenter.identifier }, presenter.document])
 
@@ -23,7 +23,7 @@ RSpec.describe Index::ElasticsearchProcessor do
   end
 
   it "deletes valid document" do
-    presenter = double(:presenter)
+    presenter = instance_double('Presenter', :presenter)
     allow(presenter).to receive(:identifier).and_return(
       _type: "help_page",
       _id: "/cheese"
@@ -33,7 +33,7 @@ RSpec.describe Index::ElasticsearchProcessor do
       title: "We love cheese"
     )
 
-    client = double('client')
+    client = instance_double('client')
     allow(Services).to receive('elasticsearch').and_return(client)
     expect(client).to receive(:bulk).with(
       index: SearchConfig.instance.govuk_index_name,

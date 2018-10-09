@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe GovukIndex::CommonFieldsPresenter do
   before do
-    @popularity_lookup = double(:popularity_lookup)
+    @popularity_lookup = instance_double('Indexer::PopularityLookup', :popularity_lookup)
     allow(Indexer::PopularityLookup).to receive(:new).and_return(@popularity_lookup)
     allow(@popularity_lookup).to receive(:lookup_popularities).and_return({})
 

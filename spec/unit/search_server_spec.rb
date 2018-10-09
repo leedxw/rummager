@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe SearchIndices::SearchServer do
   def schema_config
-    schema = double("schema config")
+    schema = instance_double('SchemaConfig', 'schema config')
     allow(schema).to receive(:elasticsearch_mappings).and_return({})
     allow(schema).to receive(:elasticsearch_settings).and_return({})
     schema

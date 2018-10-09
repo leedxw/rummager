@@ -40,7 +40,7 @@ RSpec.describe Search::BestBetsChecker do
   end
 
   def setup_checker(query, hits)
-    @index = double("metasearch index")
+    @index = instance_double("metasearch index")
     @checker = described_class.new(query, @index)
     expect(@index).to receive(:raw_search).with(
       best_bets_query(query), "best_bet"

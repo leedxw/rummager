@@ -35,7 +35,7 @@ RSpec.describe SearchIndices::IndexGroup do
   end
 
   it "switch index with no existing alias" do
-    new_index = double("New index", index_name: "test-new")
+    new_index = instance_double('SearchIndices::Index', "New index", index_name: "test-new")
     get_stub = stub_request(:get, "#{SearchConfig.instance.base_uri}/_aliases")
       .to_return(
         status: 200,
@@ -63,7 +63,7 @@ RSpec.describe SearchIndices::IndexGroup do
   end
 
   it "switch index with existing alias" do
-    new_index = double("New index", index_name: "test-new")
+    new_index = instance_double('SearchIndices::Index', "New index", index_name: "test-new")
     get_stub = stub_request(:get, "#{SearchConfig.instance.base_uri}/_aliases")
       .to_return(
         status: 200,
@@ -92,7 +92,7 @@ RSpec.describe SearchIndices::IndexGroup do
 
   it "switch index with multiple existing aliases" do
     # Not expecting the system to get into this state, but it should cope
-    new_index = double("New index", index_name: "test-new")
+    new_index = instance_double('SearchIndices::Index', "New index", index_name: "test-new")
     get_stub = stub_request(:get, "#{SearchConfig.instance.base_uri}/_aliases")
       .to_return(
         status: 200,
@@ -122,7 +122,7 @@ RSpec.describe SearchIndices::IndexGroup do
   end
 
   it "switch index with existing real index" do
-    new_index = double("New index", index_name: "test-new")
+    new_index = instance_double('SearchIndices::Index', "New index", index_name: "test-new")
     stub_request(:get, "#{SearchConfig.instance.base_uri}/_aliases")
       .to_return(
         status: 200,

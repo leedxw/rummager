@@ -2,14 +2,14 @@ require 'spec_helper'
 
 RSpec.describe Search::TimedCache do
   it "result is not called until needed" do
-    fetch = double("fetch")
+    fetch = instance_double("stubbed_method")
     expect(fetch).not_to receive(:call)
 
     described_class.new(5) { fetch.call }
   end
 
   it "result is cached" do
-    fetch = double("fetch")
+    fetch = instance_double("stubbed_method")
     expect(fetch).to receive(:call).and_return("foo").once
 
     cache = described_class.new(5) { fetch.call }
@@ -17,7 +17,7 @@ RSpec.describe Search::TimedCache do
   end
 
   it "cache does not expire within lifetime" do
-    fetch = double("fetch")
+    fetch = instance_double('stubbed_method')
     expect(fetch).to receive(:call).and_return("foo").once
 
     clock = double
@@ -35,7 +35,7 @@ RSpec.describe Search::TimedCache do
   end
 
   it "cache expires" do
-    fetch = double("fetch")
+    fetch = instance_double('stubbed_method')
     expect(fetch).to receive(:call).and_return("foo").twice
 
     clock = double

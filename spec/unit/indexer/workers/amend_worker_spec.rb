@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Indexer::AmendWorker do
   it "amends documents" do
-    mock_index = double("index")
+    mock_index = instance_double("index")
     expect(mock_index).to receive(:amend).with("/foobang", "title" => "New title")
     expect_any_instance_of(SearchIndices::SearchServer).to receive(:index)
       .with("test-index")
@@ -14,7 +14,7 @@ RSpec.describe Indexer::AmendWorker do
 
   it "retries when index locked" do
     lock_delay = Indexer::DeleteWorker::LOCK_DELAY
-    mock_index = double("index")
+    mock_index = instance_double("index")
     expect(mock_index).to receive(:amend).and_raise(SearchIndices::IndexLocked)
     expect_any_instance_of(SearchIndices::SearchServer).to receive(:index)
       .with("test-index")

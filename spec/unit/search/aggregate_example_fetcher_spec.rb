@@ -48,9 +48,9 @@ RSpec.describe Search::AggregateExampleFetcher do
   end
 
   def stub_index(_name)
-    schema = double("schema")
+    schema = instance_double("schema")
     allow(schema).to receive(:field_definitions).and_return(sample_field_definitions)
-    index = double("content index")
+    index = instance_double("content index")
     allow(index).to receive(:schema).and_return(schema)
     index
   end
@@ -78,7 +78,7 @@ RSpec.describe Search::AggregateExampleFetcher do
   context "no aggregate" do
     before do
       @index = stub_index("content index")
-      @builder = double("builder")
+      @builder = instance_double("builder")
       @fetcher = described_class.new(@index, {}, Search::QueryParameters.new, @builder)
     end
 
@@ -112,7 +112,7 @@ RSpec.describe Search::AggregateExampleFetcher do
           }
         }
       )
-      @builder = double("builder")
+      @builder = instance_double("builder")
       @fetcher = described_class.new(@index, main_query_response, params, @builder)
     end
 
@@ -167,7 +167,7 @@ RSpec.describe Search::AggregateExampleFetcher do
         }
       )
 
-      @builder = double("builder")
+      @builder = instance_double("builder")
       @fetcher = described_class.new(@index, main_query_response, params, @builder)
     end
 
@@ -222,7 +222,7 @@ RSpec.describe Search::AggregateExampleFetcher do
           }
         }
       )
-      @builder = double("builder")
+      @builder = instance_double("builder")
       @fetcher = described_class.new(@index, main_query_response, params, @builder)
     end
 
@@ -257,7 +257,7 @@ RSpec.describe Search::AggregateExampleFetcher do
         }
       )
 
-      @builder = double("builder")
+      @builder = instance_double("builder")
       @fetcher = described_class.new(@index, main_query_response, params, @builder)
     end
 

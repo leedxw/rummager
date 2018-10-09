@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Search::BaseRegistry, 'Specialist Sector' do
   before do
-    @index = double("elasticsearch index")
+    @index = instance_double("elasticsearch index")
     @specialist_sector_registry = described_class.new(@index, sample_field_definitions, "specialist_sector")
   end
 

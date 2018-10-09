@@ -199,7 +199,7 @@ module IntegrationSpecHelper
 
   def stub_message_payload(example_document, unpublishing: false)
     routing_key = unpublishing ? 'test.unpublish' : 'test.a_routing_key'
-    double(:message, ack: true, payload: example_document, delivery_info: { routing_key: routing_key })
+    instance_double('GovukMessageQueueConsumer::Message', :message, ack: true, payload: example_document, delivery_info: { routing_key: routing_key })
   end
 
 private

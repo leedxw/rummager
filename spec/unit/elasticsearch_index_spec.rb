@@ -61,7 +61,7 @@ RSpec.describe SearchIndices::Index do
     ]
 
     documents = json_documents.map do |json_document|
-      double("document", elasticsearch_export: json_document)
+      instance_double("document", elasticsearch_export: json_document)
     end
 
     response = <<~eos

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Search::BaseRegistry do
   before do
-    @index = double("elasticsearch index")
+    @index = instance_double("elasticsearch index")
     @base_registry = described_class.new(@index, sample_field_definitions, "example-format")
   end
 
@@ -46,7 +46,7 @@ RSpec.describe Search::BaseRegistry do
   end
 
   it "document enumerator is traversed only once" do
-    document_enumerator = double("enumerator")
+    document_enumerator = instance_double("enumerator")
     expect(document_enumerator).to receive(:to_a).once.and_return([example_document])
     allow(@index).to receive(:documents_by_format)
       .with("example-format", anything)

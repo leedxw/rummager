@@ -2,7 +2,8 @@ require 'spec_helper'
 
 RSpec.describe GovukIndex::PublishingEventProcessor do
   it "will process and ack a single message" do
-    message = double(
+    message = instance_double(
+      'GovukMessageQueueConsumer::Message',
       payload: {
         "base_path" => "/cheese",
         "document_type" => "help_page",
@@ -20,7 +21,8 @@ RSpec.describe GovukIndex::PublishingEventProcessor do
   end
 
   it "will process and ack an array of messages" do
-    message1 = double(
+    message1 = instance_double(
+      'GovukMessageQueueConsumer::Message',
       payload: {
         "base_path" => "/cheese",
         "document_type" => "help_page",
@@ -30,7 +32,8 @@ RSpec.describe GovukIndex::PublishingEventProcessor do
         routing_key: 'routing.key'
       }
     )
-    message2 = double(
+    message2 = instance_double(
+      'GovukMessageQueueConsumer::Message',
       payload: {
         "base_path" => "/crackers",
         "document_type" => "help_page",

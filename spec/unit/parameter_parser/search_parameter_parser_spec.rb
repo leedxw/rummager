@@ -34,12 +34,12 @@ RSpec.describe SearchParameterParser do
   end
 
   before do
-    @schema = double("combined index schema")
-    date_type = double("date type")
+    @schema = instance_double("combined index schema")
+    date_type = instance_double("date type")
     allow(date_type).to receive(:filter_type).and_return("date")
-    identifier_type = double("identifier type")
+    identifier_type = instance_double("identifier type")
     allow(identifier_type).to receive(:filter_type).and_return("text")
-    string_type = double("string type")
+    string_type = instance_double("string type")
     allow(string_type).to receive(:filter_type).and_return(nil)
     field_definitions = {}
     allowed_filter_fields = []
@@ -55,7 +55,7 @@ RSpec.describe SearchParameterParser do
       ["case_type", identifier_type],
       ["opened_date", date_type],
     ].each { |field, type|
-      definition = double("#{field} definition")
+      definition = instance_double("#{field} definition")
       allow(definition).to receive(:type).and_return(type)
       field_definitions[field] = definition
       if type.filter_type

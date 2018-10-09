@@ -5,7 +5,7 @@ RSpec.describe GovukIndex::PublishingEventWorker do
     allow(Index::ElasticsearchProcessor).to receive(:new).and_return(actions)
   end
 
-  let(:actions) { double('actions') }
+  let(:actions) { instance_double('Index::ElasticsearchProcessor', 'actions') }
 
   context 'when a single message is received' do
     it "will save a valid document" do

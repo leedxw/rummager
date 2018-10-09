@@ -11,7 +11,7 @@ RSpec.describe Indexer::MessageProcessor, 'RakeTest' do
       indexer = described_class.new
       expect(described_class).to receive(:new).and_return(indexer)
 
-      consumer = double('consumer')
+      consumer = instance_double('GovukMessageQueueConsumer::Consumer', 'consumer')
       expect(consumer).to receive(:run).and_return(true)
 
       expect(GovukMessageQueueConsumer::Consumer).to receive(:new)

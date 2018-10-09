@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Indexer::DeleteWorker do
   it "deletes documents" do
-    mock_index = double("index")
+    mock_index = instance_double("index")
     expect(mock_index).to receive(:delete).with("edition", "/foobang")
     expect_any_instance_of(SearchIndices::SearchServer).to receive(:index)
       .with("test-index")
@@ -14,7 +14,7 @@ RSpec.describe Indexer::DeleteWorker do
 
   it "retries when index locked" do
     lock_delay = described_class::LOCK_DELAY
-    mock_index = double("index")
+    mock_index = instance_double("index")
     expect(mock_index).to receive(:delete).and_raise(SearchIndices::IndexLocked)
     expect_any_instance_of(SearchIndices::SearchServer).to receive(:index)
       .with("test-index")

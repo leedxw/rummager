@@ -126,7 +126,7 @@ private
   end
 
   def stub_client_for_scroll_enumerator(return_values:, search_body: nil, search_type: "query_then_fetch")
-    client = double(:client)
+    client = instance_double('Elasticsearch::Transport::Client', :client)
     allow(Services).to receive(:elasticsearch).and_return(client)
 
     expect(client).to receive(:search).with(
