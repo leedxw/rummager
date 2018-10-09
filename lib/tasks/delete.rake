@@ -25,7 +25,7 @@ namespace :delete do
   task :all_duplicates do
     type_to_delete = ENV.fetch("TYPE_TO_DELETE")
 
-    elasticsearch_config = SearchConfig.new.elasticsearch
+    SearchConfig.new.elasticsearch
 
     links = DuplicateLinksFinder.new.find_exact_duplicates
 
