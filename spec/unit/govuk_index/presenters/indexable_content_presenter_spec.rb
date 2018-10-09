@@ -12,7 +12,7 @@ RSpec.describe GovukIndex::IndexableContentPresenter do
   let(:format) { 'help_page' }
 
 
-  context "govspeak and html in body fields" do
+  context "when there is govspeak and html in body fields" do
     let(:details) {
       {
         "body" => [
@@ -27,7 +27,7 @@ RSpec.describe GovukIndex::IndexableContentPresenter do
     end
   end
 
-  context "details with parts" do
+  context "when details contains parts" do
     let(:details) {
       {
         "parts" => [
@@ -56,7 +56,7 @@ RSpec.describe GovukIndex::IndexableContentPresenter do
     end
   end
 
-  context "additional specified indexable content keys" do
+  context "when there are additional specified indexable content keys" do
     let(:format) { 'transaction' }
     let(:details) {
       {
@@ -75,7 +75,7 @@ RSpec.describe GovukIndex::IndexableContentPresenter do
     end
   end
 
-  context "contact format" do
+  context "when the format is 'contact'" do
     let(:format) { 'contact' }
     let(:details) {
       {
@@ -99,7 +99,7 @@ RSpec.describe GovukIndex::IndexableContentPresenter do
     end
   end
 
-  context "transaction with hidden_search_terms (smart answer start page)" do
+  context "when the format is 'transaction' and contains hidden_search_terms (smart answer start page)" do
     let(:format) { 'transaction' }
     let(:details) do
       {

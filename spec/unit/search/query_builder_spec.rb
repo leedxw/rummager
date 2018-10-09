@@ -18,8 +18,8 @@ RSpec.describe Search::QueryBuilder do
     end
   end
 
-  context "more like this" do
-    it "call the payload for a more like this query" do
+  context "with a 'more like this' query" do
+    it "calls the payload with a more like this query" do
       builder = builder_with_params(similar_to: %{"/hello-world"})
 
       expect(builder).to receive(:more_like_this_query_hash).once

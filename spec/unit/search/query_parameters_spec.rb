@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Search::QueryParameters do
-  context "quoted_search_phrase?" do
+  context "when checking if a search phrase is quote enclosed" do
     it "return false if query isn't quote enclosed" do
       params = described_class.new(query: "my query")
       expect(false).to eq(params.quoted_search_phrase?)
@@ -48,30 +48,36 @@ RSpec.describe Search::QueryParameters do
     end
   end
 
-  context "query" do
-    it "return the query if there are no enclosing quotes" do
-      params = described_class.new(query: %{my query})
-      expect(%{my query}).to eq(params.query)
+  context "when parsing a query" do
+    context "without enclosing quotes" do
+      it "returns the query" do
+        params = described_class.new(query: %{my query})
+        expect(%{my query}).to eq(params.query)
+      end
+
+      it "does not strip leading and trailing whitespace" do
+        params = described_class.new(query: %{  my query  })
+        expect(%{  my query  }).to eq(params.query)
+      end
     end
 
-    it "return the query with enclosing quotes if there are embedded quotes" do
-      params = described_class.new(query: %{"Enclosing quotes but with "embedded" quotes"})
-      expect(%{"Enclosing quotes but with "embedded" quotes"}).to eq(params.query)
+    context "when the phrase contains embedded quotes" do
+      it "returns the query with enclosing quotes" do
+        params = described_class.new(query: %{"Enclosing quotes but with "embedded" quotes"})
+        expect(%{"Enclosing quotes but with "embedded" quotes"}).to eq(params.query)
+      end
+
+      it "does not strip leading and trailing whitespace" do
+        params = described_class.new(query: %{  \t"Enclosing quotes but with "embedded" quotes"  })
+        expect(%{  \t"Enclosing quotes but with "embedded" quotes"  }).to eq(params.query)
+      end
     end
 
-    it "not strip leading and trailing whitespace if phrase is enclosed in quotes" do
-      params = described_class.new(query: %{  \t "Enclosing quotes"\t  })
-      expect(%{  \t "Enclosing quotes"\t  }).to eq(params.query)
-    end
-
-    it "not strip leading and trailing whitespace if not enclosed in quotes" do
-      params = described_class.new(query: %{  my query  })
-      expect(%{  my query  }).to eq(params.query)
-    end
-
-    it "not strip leading and trailing whitespace if phrase contains embedded quotes" do
-      params = described_class.new(query: %{  \t"Enclosing quotes but with "embedded" quotes"  })
-      expect(%{  \t"Enclosing quotes but with "embedded" quotes"  }).to eq(params.query)
+    context "when the phrase is enclosed in quotes" do
+      it "does not strip leading and trailing whitespace" do
+        params = described_class.new(query: %{  \t "Enclosing quotes"\t  })
+        expect(%{  \t "Enclosing quotes"\t  }).to eq(params.query)
+      end
     end
   end
 end

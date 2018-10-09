@@ -55,8 +55,8 @@ RSpec.describe Search::AggregateExampleFetcher do
     index
   end
 
-  context "#prepare_response" do
-    it "map an empty response" do
+  context "when preparing a response" do
+    it "maps an empty response" do
       fetcher = described_class.new(@index, {}, Search::QueryParameters.new, @builder)
 
       response = fetcher.send(:prepare_response, [], [])
@@ -64,7 +64,7 @@ RSpec.describe Search::AggregateExampleFetcher do
       expect(response).to eq({})
     end
 
-    it "map a response to aggregates without fields" do
+    it "maps a response to aggregates without fields" do
       fetcher = described_class.new(@index, {}, Search::QueryParameters.new, @builder)
       slugs = ['a-slug-name']
       response_list = [{ 'hits' => { 'total' => 1, 'hits' => [{ '_id' => 'a-slug-name' }] } }]
@@ -75,19 +75,19 @@ RSpec.describe Search::AggregateExampleFetcher do
     end
   end
 
-  context "no aggregate" do
+  context "when there is no aggregate" do
     before do
       @index = stub_index("content index")
       @builder = instance_double("builder")
       @fetcher = described_class.new(@index, {}, Search::QueryParameters.new, @builder)
     end
 
-    it "get an empty hash of examples" do
+    it "gets an empty hash of examples" do
       expect(@fetcher.fetch).to eq({})
     end
   end
 
-  context "one aggregate with global scope" do
+  context "when there is one aggregate with global scope" do
     before do
       allow(GovukIndex::MigratedFormats).to receive(:migrated_formats).and_return({})
       @index = stub_index("content index")
@@ -140,7 +140,7 @@ RSpec.describe Search::AggregateExampleFetcher do
     end
   end
 
-  context "one aggregate with query scope" do
+  context "when there is one aggregate with query scope" do
     before do
       @index = stub_index("content index")
       @example_fields = %w{link title other_field}
@@ -200,7 +200,7 @@ RSpec.describe Search::AggregateExampleFetcher do
     end
   end
 
-  context "one aggregate but no documents match query" do
+  context "when there is one aggregate but no documents match the query" do
     before do
       @index = stub_index("content index")
       @example_fields = %w{link title other_field}
@@ -231,7 +231,7 @@ RSpec.describe Search::AggregateExampleFetcher do
     end
   end
 
-  context "one aggregate with 1000 matches" do
+  context "when there is one aggregate with 1000 matches" do
     before do
       @index = stub_index("content index")
       @example_fields = %w{link title other_field}

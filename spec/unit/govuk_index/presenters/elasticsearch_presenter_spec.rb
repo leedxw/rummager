@@ -35,7 +35,7 @@ RSpec.describe GovukIndex::ElasticsearchPresenter do
     }.to raise_error(GovukIndex::NotIdentifiable)
   end
 
-  context "external content" do
+  context "when presenting external content" do
     it "is valid if it has a URL" do
       payload = {
         "document_type" => "external_content",

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe FieldDefinitionParser do
-  context "after loading definitions" do
+  context "when definitions have been loaded" do
     before do
       @definitions = described_class.new(File.expand_path('../../../config/schema', File.dirname(__FILE__))).parse
     end

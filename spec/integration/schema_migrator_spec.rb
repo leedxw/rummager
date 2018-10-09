@@ -36,7 +36,7 @@ RSpec.describe SchemaMigrator do
     expect_document_is_in_rummager(document, index: original_index.real_name, id: "/a-page-to-be-reindexed")
   end
 
-  context "index comparison" do
+  context "when comparing indexes" do
     it "identifies when content has not changed" do
       commit_document("govuk_test", { "link" => "/a-page-to-be-reindexed" })
 

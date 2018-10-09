@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe MetasearchIndex::Deleter::V2 do
-  context "instantiation" do
+  context "when instantiating" do
     it "raises an error when a blank id is passed in" do
       expect do
         described_class.new(id: nil)

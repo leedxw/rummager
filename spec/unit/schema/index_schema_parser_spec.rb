@@ -9,7 +9,7 @@ RSpec.describe IndexSchemaParser do
     File.expand_path('../../../config/schema', File.dirname(__FILE__))
   end
 
-  context "after loading standard index schemas" do
+  context "when standard index schemas have been loaded" do
     before do
       field_definitions = FieldDefinitionParser.new(schema_dir).parse
       elasticsearch_types = ElasticsearchTypesParser.new(schema_dir, field_definitions).parse

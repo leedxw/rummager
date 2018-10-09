@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe FieldTypes do
-  context "after loading standard types" do
+  context "when standard types have been loaded" do
     before do
       @types = described_class.new(File.expand_path('../../../config/schema', File.dirname(__FILE__)))
     end
@@ -41,7 +41,7 @@ RSpec.describe FieldTypes do
     end
   end
 
-  context "loading raises an exception if configuration is invalid" do
+  context "when loading raises an exception if the configuration is invalid" do
     before do
       @types = described_class.new("/config/path")
     end

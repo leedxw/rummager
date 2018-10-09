@@ -152,7 +152,7 @@ RSpec.describe Search::ResultSetPresenter do
     )
   end
 
-  context "no results" do
+  context "when there are no results" do
     before do
       results = {
         "hits" => {
@@ -169,20 +169,20 @@ RSpec.describe Search::ResultSetPresenter do
       ).present
     end
 
-    it "present empty list of results" do
+    it "presents an empty list of results" do
       expect(@output[:results]).to eq([])
     end
 
-    it "have total of 0" do
+    it "has a total of 0" do
       expect(@output[:total]).to eq(0)
     end
 
-    it "have no aggregates" do
+    it "has no aggregates" do
       expect(@output[:aggregates]).to eq({})
     end
   end
 
-  context "results with no registries" do
+  context "when the results have no registries" do
     before do
       @output = described_class.new(
         search_params: Search::QueryParameters.new(
@@ -224,7 +224,7 @@ RSpec.describe Search::ResultSetPresenter do
     end
   end
 
-  context "results with no fields" do
+  context "when the results have no fields" do
     before do
       @empty_result = sample_docs.first.tap { |doc|
         doc['fields'] = nil
@@ -249,7 +249,7 @@ RSpec.describe Search::ResultSetPresenter do
     end
   end
 
-  context "results with a registry" do
+  context "when results have a registry" do
     before do
       policy_area_registry = {
         "farming" => {
@@ -309,7 +309,7 @@ RSpec.describe Search::ResultSetPresenter do
     end
   end
 
-  context "results with aggregates" do
+  context "when the results have aggregates" do
     before do
       @output = described_class.new(
         search_params: Search::QueryParameters.new(
@@ -358,7 +358,7 @@ RSpec.describe Search::ResultSetPresenter do
     end
   end
 
-  context "results with aggregates and a filter applied" do
+  context "when the results have aggregates and a filter applied" do
     before do
       @output = described_class.new(
         search_params: Search::QueryParameters.new(
@@ -410,7 +410,7 @@ RSpec.describe Search::ResultSetPresenter do
     end
   end
 
-  context "results with aggregates and a filter which matches nothing applied" do
+  context "when results have aggregates and a filter which matches nothing applied" do
     before do
       @output = described_class.new(
         search_params: Search::QueryParameters.new(
@@ -462,7 +462,7 @@ RSpec.describe Search::ResultSetPresenter do
     end
   end
 
-  context "results with aggregate counting only" do
+  context "when results have aggregate counting only" do
     before do
       @output = described_class.new(
         search_params: Search::QueryParameters.new(
@@ -495,7 +495,7 @@ RSpec.describe Search::ResultSetPresenter do
     end
   end
 
-  context "results with aggregates sorted by ascending count" do
+  context "when results with aggregates are sorted by ascending count" do
     before do
       org_registry = sample_org_registry
       @output = search_presenter(
@@ -513,7 +513,7 @@ RSpec.describe Search::ResultSetPresenter do
     end
   end
 
-  context "results with aggregates sorted by descending count" do
+  context "when results with aggregates are sorted by descending count" do
     before do
       org_registry = sample_org_registry
       @output = search_presenter(
@@ -531,7 +531,7 @@ RSpec.describe Search::ResultSetPresenter do
     end
   end
 
-  context "results with aggregates sorted by ascending slug" do
+  context "when results with aggregates are sorted by ascending slug" do
     before do
       org_registry = sample_org_registry
       @output = search_presenter(
@@ -550,7 +550,7 @@ RSpec.describe Search::ResultSetPresenter do
     end
   end
 
-  context "results with aggregates sorted by ascending link" do
+  context "when results with aggregates are sorted by ascending link" do
     before do
       org_registry = sample_org_registry
       @output = search_presenter(
@@ -568,7 +568,7 @@ RSpec.describe Search::ResultSetPresenter do
     end
   end
 
-  context "results with aggregates sorted by ascending title" do
+  context "when results with aggregates are sorted by ascending title" do
     before do
       org_registry = sample_org_registry
       @output = search_presenter(
@@ -586,7 +586,7 @@ RSpec.describe Search::ResultSetPresenter do
     end
   end
 
-  context "results with aggregates and an org registry" do
+  context "when results have aggregates and an org registry" do
     before do
       org_registry = sample_org_registry
 
@@ -648,7 +648,7 @@ RSpec.describe Search::ResultSetPresenter do
     end
   end
 
-  context "results with aggregate examples" do
+  context "when results have aggregate examples" do
     before do
       org_registry = sample_org_registry
 

@@ -482,7 +482,7 @@ RSpec.describe SearchParameterParser do
     end
   end
 
-  context "filtering a date field with invalid parameters" do
+  context "when filtering a date field with invalid parameters" do
     it "does not filter on date if the date is invalid" do
       params = {
         "filter_document_type" => %w[cma_case],

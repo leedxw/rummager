@@ -22,7 +22,7 @@ RSpec.describe ElasticsearchTypesParser do
     ]
   end
 
-  context "after loading standard types" do
+  context "when standard types have been loaded" do
     before do
       field_definitions = FieldDefinitionParser.new(schema_dir).parse
       @types = described_class.new(schema_dir, field_definitions).parse

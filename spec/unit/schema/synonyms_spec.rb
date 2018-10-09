@@ -74,7 +74,7 @@ RSpec.describe SynonymParser do
     }.to raise_error(SynonymParser::InvalidSynonymConfig)
   end
 
-  context "duplicate validation" do
+  context "when validating terms are not duplicates" do
     it "rejects duplicate terms with the 'search' key" do
       config = [
         { "search" => "mcrpig => pig" },

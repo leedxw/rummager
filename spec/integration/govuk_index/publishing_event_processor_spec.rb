@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe 'GovukIndex::PublishingEventProcessorTest' do
-  context "Testing via fake rabbit queue" do
+  context "when testing via a fake RabbitMQ queue" do
     before do
       bunny_mock = BunnyMock.new
       @channel = bunny_mock.start.channel
@@ -81,7 +81,7 @@ RSpec.describe 'GovukIndex::PublishingEventProcessorTest' do
     end
   end
 
-  context "test queue handles" do
+  context "with a test queue" do
     it "can save multiple documents in a batch" do
       allow(GovukIndex::MigratedFormats).to receive(:indexable?).and_return(true)
       random_example_a = generate_random_example(

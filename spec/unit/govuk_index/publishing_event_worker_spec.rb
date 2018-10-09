@@ -231,7 +231,7 @@ RSpec.describe GovukIndex::PublishingEventWorker do
       end
     end
 
-    context 'elasticsearch fails during processing for some messages' do
+    context 'when elasticsearch fails during processing for some messages' do
       before do
         allow(actions).to receive(:save).twice
         allow(actions).to receive(:commit).and_return(

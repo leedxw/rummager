@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe 'search queries' do
-  context 'aggregation' do
+  context 'when aggregating' do
     it "returns document count" do
       build_sample_documents_on_content_indices(documents_per_index: 2)
 
@@ -48,7 +48,7 @@ RSpec.describe 'search queries' do
     end
   end
 
-  context "filtering" do
+  context "when filtering" do
     it "returns count with filter on field, excluding field filter scope" do
       build_sample_documents_on_content_indices(documents_per_index: 2)
 
@@ -83,7 +83,7 @@ RSpec.describe 'search queries' do
     end
   end
 
-  context "migrated formats" do
+  context "when migrating formats" do
     it "does not include duplicate documents in govuk index within the count" do
       commit_document('govuk_test', { organisations: %w[org1] })
       commit_document('government_test', { organisations: %w[org1] })

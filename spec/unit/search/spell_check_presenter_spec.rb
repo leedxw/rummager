@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Search::SpellCheckPresenter do
-  context "#present" do
+  context "when calling #present" do
     it "parse the elasticsearch response and return suggestions" do
       es_response = {
         "suggest" => {

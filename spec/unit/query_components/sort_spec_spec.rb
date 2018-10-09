@@ -21,7 +21,7 @@ RSpec.describe 'SortTest' do
     end
   end
 
-  context "search with ascending sort" do
+  context "when searching with ascending sort" do
     it "put documents without a timestamp at the bottom" do
       builder = QueryComponents::Sort.new(Search::QueryParameters.new(order: %w(public_timestamp asc)))
 
@@ -31,7 +31,7 @@ RSpec.describe 'SortTest' do
     end
   end
 
-  context "search with descending sort" do
+  context "when searching with descending sort" do
     it "put documents without a timestamp at the bottom" do
       builder = QueryComponents::Sort.new(Search::QueryParameters.new(order: %w(public_timestamp desc)))
 
@@ -41,7 +41,7 @@ RSpec.describe 'SortTest' do
     end
   end
 
-  context "more like this query" do
+  context "when querying for 'more like this'" do
     it "not explicitly order" do
       builder = QueryComponents::Sort.new(Search::QueryParameters.new(similar_to: ["/hello-world"]))
 

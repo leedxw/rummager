@@ -17,7 +17,7 @@ RSpec.describe QueryComponents::Filter do
     SearchParameterParser::TextFieldFilter.new(field_name, values, true)
   end
 
-  context "search with one filter" do
+  context "when searching with one filter" do
     it "append the correct text filters" do
       builder = described_class.new(
         make_search_params([text_filter("organisations", ["hm-magic"])])
@@ -39,7 +39,7 @@ RSpec.describe QueryComponents::Filter do
     end
   end
 
-  context "search with a filter with multiple options" do
+  context "when searching with a filter with multiple options" do
     it "have correct filter" do
       builder = described_class.new(
         make_search_params([text_filter("organisations", ["hm-magic", "hmrc"])])
@@ -51,7 +51,7 @@ RSpec.describe QueryComponents::Filter do
     end
   end
 
-  context "search with a filter and rejects" do
+  context "when searching with a filter and rejects" do
     it "have correct filter" do
       builder = described_class.new(
         make_search_params(
@@ -73,7 +73,7 @@ RSpec.describe QueryComponents::Filter do
     end
   end
 
-  context "search with multiple filters" do
+  context "when searching with multiple filters" do
     it "have correct filter" do
       builder = described_class.new(
         make_search_params(

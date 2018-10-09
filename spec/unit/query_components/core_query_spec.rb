@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe QueryComponents::CoreQuery do
-  context "the search query" do
+  context "when making a search query" do
     it "uses the synonyms analyzer" do
       builder = described_class.new(search_query_params)
 
@@ -18,7 +18,7 @@ RSpec.describe QueryComponents::CoreQuery do
     end
   end
 
-  context "the search query with synonyms disabled" do
+  context "when making a search query with synonyms disabled" do
     it "uses the default analyzer" do
       builder = described_class.new(search_query_params(debug: { disable_synonyms: true }))
 

@@ -109,26 +109,26 @@ RSpec.describe GovukIndex::IndexableContentSanitiser do
     expect(subject.clean(payload)).to eq(expected_content)
   end
 
-  context "Does not perform HTML encoding for" do
+  context "when encoding HTML payloads" do
     it '\r character' do
       payload = ["line 1\r\nline 2"]
       expected_content = "line 1\r\nline 2"
       expect(subject.clean(payload)).to eql(expected_content)
     end
 
-    it '& character' do
+    it 'does not encode the & character' do
       payload = ["line 1 & line 2"]
       expected_content = "line 1 & line 2"
       expect(subject.clean(payload)).to eql(expected_content)
     end
 
-    it 'accent characters' do
+    it 'does not encode accent characters' do
       payload = ["crème brûlée"]
       expected_content = "crème brûlée"
       expect(subject.clean(payload)).to eql(expected_content)
     end
 
-    it '% character' do
+    it 'does not encode the % character' do
       payload = ["100%"]
       expected_content = "100%"
       expect(subject.clean(payload)).to eql(expected_content)

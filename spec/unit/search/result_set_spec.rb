@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe Search::ResultSet do
-  context "an empty result set" do
+  context "when a result set is empty" do
     before do
       @response = {
         "hits" => {
@@ -21,7 +21,7 @@ RSpec.describe Search::ResultSet do
     end
   end
 
-  context "a result set containing a single result" do
+  context "when a result set contains a single result" do
     before do
       @response = {
         "hits" => {
