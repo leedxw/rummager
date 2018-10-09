@@ -177,7 +177,7 @@ protected
       @errors << %{Invalid value "#{value}" for #{description} (expected positive integer)}
       return nil
     end
-    if result < 0
+    if result.negative?
       @errors << %{Invalid negative value "#{value}" for #{description} (expected positive integer)}
       return nil
     end
