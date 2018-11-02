@@ -291,7 +291,8 @@ migrated:
   - '/help'
   - '/find-local-council'
 
-indexable: []
+indexable:
+  - topical_events
 
 non_indexable:
 - calculator

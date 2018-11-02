@@ -142,6 +142,25 @@ RSpec.describe GovukIndex::ExpandedLinksPresenter do
     expect(presenter.topic_content_ids).to eq(expected_topic_content_ids)
   end
 
+  it "topical_events" do
+    expanded_links = {
+      "topical_events" => [
+        {
+          "base_path" => "/government/topical-events/budget",
+          "content_id" => "ca2326a6-b6c4-4750-917f-9fe12d0c59c9",
+          "locale" => "en",
+          "title" => "The budget"
+        }
+      ]
+    }
+
+    presenter = expanded_links_presenter(expanded_links)
+
+    expected_topical_events = ["budget"]
+
+    expect(presenter.topical_events).to eq(expected_topical_events)
+  end
+
   it "people" do
     expanded_links = {
       "people" => [
