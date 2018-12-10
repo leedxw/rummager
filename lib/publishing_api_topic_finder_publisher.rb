@@ -17,6 +17,7 @@ class PublishingApiTopicFinderPublisher
         timestamp: @timestamp,
         topic_content_id: item[:content_id],
         topic_name: item[:title],
+        topic_description: item[:description],
         topic_slug: item[:slug],
       }
 
